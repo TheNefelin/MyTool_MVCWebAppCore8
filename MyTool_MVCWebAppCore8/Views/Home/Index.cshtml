@@ -1,0 +1,31 @@
+﻿@model List<MyTool_MVCWebAppCore8.Models.Imagen>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <h2>Convertir a WebP</h2>
+    <input id="imagenes" name="imagenes" type="file" multiple accept="image/png, image/jpeg" />
+    <input id="uploadButton" type="submit" value="upload" />
+        <div id="progress-container" style="display:none;">
+        <progress id="progress-bar" max="100" value="0"></progress>
+    </div>
+</form>
+
+@if (Model != null && Model.Count > 0)
+{
+    <h3>Imágenes Cargadas:</h3>
+    <ul>
+        @foreach (var imagen in Model)
+        {
+            <li>
+                <img 
+                    src="@Url.Content(imagen.RutaImagen)" 
+                    alt="@imagen.NomImagen" 
+                    style="height: 250px; margin-bottom: 4px"
+                />
+            </li>
+        }
+    </ul>
+}
